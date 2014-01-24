@@ -20,12 +20,12 @@ You DON'T have to read. But,
 	 
 You DO have to do:
  	
- 	var assignments = ['weekly-assignments', 'mid-term', '
+ 	var assignments = ['weekly-assignments', 'mid-term', 'final']
  	
  	be(active, stubborn);
  	do(talk, show, participate, collaborate, inspire, teach, haveFun); 
 	
-	if(assignment == 'Mid Term' || assignment == 'Final'){
+	if(assignment == 'mid-term' || assignment == 'final'){
 	 	allow('Collaboration', 'Team Work');
 	}
 
