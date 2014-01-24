@@ -22,7 +22,7 @@ You DO have to do:
  	
  	var assignments = ['weekly-assignments', 'mid-term', '
  	
- 	be(
+ 	be(active, stubborn);
  	do(talk, show, participate, collaborate, inspire, teach, haveFun); 
 	
 	if(assignment == 'Mid Term' || assignment == 'Final'){
@@ -32,4 +32,4 @@ You DO have to do:
 Prerequisite: will to learn.
 
 See Syllabus for detail.
-#GoWeb3JS 
+#####GoWeb3JS 
