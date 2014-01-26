@@ -10,7 +10,7 @@ We do have a [syllabus](http://) but we all know that one syllabus doesn't fit a
 
 	var resources = ['books', 'articles'];
 	 
-Refer to sylabus for weekly readings. Based on what we discuss in class, everyone's invited to post good reads, articles and resources.
+Refer to [syllabus](http://)for weekly readings. Based on what we discuss in class, everyone's invited to [post good reads, articles and resources](http://).
 
 You DON'T have to read. But, 
 	
