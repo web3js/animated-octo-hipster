@@ -616,9 +616,547 @@ do {
 } while(i &gt; 0);
 </code></pre>
 				<small>
-					<a target="blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/while">Read more about while</a>
+					<a target="blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/do...while">Read more about while</a>
 				</small>
 				</section>
+
+				<section>
+					<h2>Statements</h2>
+					<p>throw</p>
+<pre><code data-trim>
+// define error cases in functions. 
+// Throw an error "object" when things go wrong. We will catch 'em later.
+// Error objects have "name" and "message" that we can use to log.
+var numberException = {
+  name : 'Number Exception',
+  message : 'Oh snap! Dude. put numbers in.'
+}
+function add(input1, input2) {
+  if(typeof input === 'number' &amp;&amp; typeof input2 === 'number') {
+    return input1 + input2;
+  } else {
+    throw numberException;
+  }
+}
+</code></pre>
+				<small>
+					<a target="blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw?redirectlocale=en-US&redirectslug=JavaScript%2FReference%2FStatements%2Fthrow">Read more about throw</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>Statements</h2>
+					<p>try catch</p>
+<pre><code data-trim>
+// Remember we "threw" an error ball last slide? 
+// Yeah that. time to "try" and "catch" it.
+// Error objects have "name" and "message" that we can use to log.
+try {
+  add('bogus', 'bananas');
+} catch(e) {
+  console.log('Caught error:', e.name, ' with message: ', e.message);	
+}
+</code></pre>
+				<small>
+					<a target="blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch">Read more about try catch</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>Expressions</h2>
+					<p>Simple variables and literals</p>
+<pre><code data-trim>
+var name = "Mani";
+var isHere = true;
+var goHome = function() { // make things happen };
+var cart = ['milk', 'banana', 'eggs'];
+var ticket = {
+  arrival : '2:24',
+  departure : '12:00',
+  price : 20	
+};
+
+</code></pre>
+				<small>
+					<a target="blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators">Read more about Expressions</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>Expressions contd.</h2>
+					<p>Ternary operation</p>
+<pre><code data-trim>
+// Short for if / else: 
+var isOpen = isClicked ? true : false;
+// same as:
+var isOpen;
+if(isOpen === true) {
+  isOpen = true;  	
+} else {
+  isOpen = false;	
+}
+
+</code></pre>
+				<small>
+					<a target="blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators">Read more about Expressions</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>Expressions contd.</h2>
+					<p>Invocation</p>
+<pre><code data-trim>
+// call a function: 
+var calculate({
+  type : 'add',
+  numbers : [2,3,4,5]	
+});
+// If the function above looks odd, don't worry. We'll cover it.
+
+</code></pre>
+				<small>
+					<a target="blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators">Read more about Expressions</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>Expressions contd.</h2>
+					<p>Invocation with New</p>
+<pre><code data-trim>
+// instantiate an instance of a "Class": 
+var myInstance = new Class();
+// we will cover constructors when we discuss Object Oriented JS.
+
+</code></pre>
+				<small>
+					<a target="blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators">Read more about Expressions</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>Expressions contd.</h2>
+					<p>Refinement</p>
+<pre><code data-trim>
+// you can delete a member property from an object: 
+var demands = {
+  girls : 'wanna have fun',
+  I : 'wanna break free'
+};
+delete demands['girls'];
+// or delete demands.girls;
+</code></pre>
+				<small>
+					<a target="blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators">Read more about Expressions</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>Expressions contd.</h2>
+					<p>Operations</p>
+<pre><code data-trim>
+// These are not functions, but operands. 
+var sessionCount = 16;
+typeof sessionCount;
+// prints 'number'
+
+var myBall = new Ball();
+myBall instanceof Ball;
+// prints true. We'll cover this later. No worries.
+</code></pre>
+				<small>
+					<a target="blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators">Read more about Expressions</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>Scope!</h2>
+					<p>Don't be fooled by curly braces. Unlike Java and C++, in JavaScript, ONLY functions create scope. We will see how in the next few slides, and during the course of our semester. We will internalize it.</p>
+
+				<small>
+					<a target="blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope">Read more about function scopes</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>Scope</h2>
+					<p>Global Vs. Local</p>
+<pre><code data-trim>
+// A global variable is a variable that sits in the outermost scope 
+// In case of browser, it's the window object:
+
+var windowWidth = 1124;
+
+// A local variable is one that is defined inside a function
+// and hence, it's only visible to it's local scope..... and the closure. 
+// but we will get to that a bit later.
+
+function multiply(number1, number2) {
+  var result = number1 * number2;	
+};
+multiply(2*3);
+console.log(result);
+
+// Prints Uncaught ReferenceError: result is not defined 
+</code></pre>
+				<small>
+					<a target="blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope">Read more about function scopes</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>Scope contd.</h2>
+					<p>Global Vs. Local</p>
+<pre><code data-trim>
+var name = "Richard";
+
+function showName () {
+  var name = "Jack"; 
+  // local variable; only accessible in this showName function
+  console.log (name); 
+  // Jack
+}
+console.log (name); 
+// Richard: the global variable
+</code></pre>
+				<small>
+					<a target="blank" href="http://javascriptissexy.com/javascript-variable-scope-and-hoisting-explained/">Read more about scope</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>Scope contd.</h2>
+					<p>No Block-Level scope</p>
+<pre><code data-trim>
+var name = "Richard";
+// the blocks in this if statement do not create a local context for the name variable
+if (name) {
+  name = "Jack"; // this name is the global name variable and it is being changed to "Jack" here
+  console.log (name); // Jack: still the global variable
+}
+
+// Here, the name variable is the same global name variable, but it was changed in the if statement
+console.log (name); // Jack
+</code></pre>
+				<small>
+					<a target="blank" href="http://javascriptissexy.com/javascript-variable-scope-and-hoisting-explained/">Read more about scope</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>Scope contd.</h2>
+					<p>Remember earlier when we said NEVER drop the var? Here's why.</p>
+<pre><code data-trim>
+// If you don't declare your local variables with the var keyword, they are part of the global scope
+var name = "Michael Jackson";
+
+function showCelebrityName () {
+  console.log (name);
+}
+
+function showOrdinaryPersonName () {	
+  name = "Johnny Evers";
+  console.log (name);
+}
+showCelebrityName (); 
+// Michael Jackson
+
+// name is not a local variable, it simply changes the global name variable
+showOrdinaryPersonName (); 
+// Johnny Evers
+
+// The global variable is now Johnny Evers, not the celebrity name anymore
+showCelebrityName (); 
+// Johnny Evers
+
+// The solution is to declare your local variable with the var keyword
+function showOrdinaryPersonName () {	
+  var name = "Johnny Evers"; 
+  // Now name is always a local variable and it will not overwrite the global variable
+  console.log (name);
+}
+</code></pre>
+				<small>
+					<a target="blank" href="http://javascriptissexy.com/javascript-variable-scope-and-hoisting-explained/">Read more about scope</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>Scope contd.</h2>
+					<p>Local takes precedence over global</p>
+<pre><code data-trim>
+var name = "Paul";
+
+function users () {
+  // Here, the name variable is local and it takes precedence over the same name variable in the global scope
+  var name = "Jack";
+
+  // The search for name starts right here inside the function before it attempts to look outside the function in the global scope
+ console.log (name); 
+}
+
+users (); 
+// Jack
+</code></pre>
+				<small>
+					<a target="blank" href="http://javascriptissexy.com/javascript-variable-scope-and-hoisting-explained/">Read more about scope</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>Scope contd.</h2>
+					<p>Global variables. They are defined as a property in the window global object.</p>
+<pre><code data-trim>
+// So to define a global variable you can do:
+phoneType = 'iPhone';
+var company = 'apple';
+
+// Both do the same thing. Remember the (for ... in) we covered earlier?
+// we can use "in" to see if a property exists inside an object. try:
+console.log(phoneType in window); // true
+console.log(company in window); // true
+
+</code></pre>
+				<small>
+					<a target="blank" href="http://javascriptissexy.com/javascript-variable-scope-and-hoisting-explained/">Read more about scope</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>Scope .... namespace</h2>
+					<p>Do Not Pollute the global Scope (namespace)</p>
+					<p><small>We're getting closer to the definition of namespace. <br> 
+						in JavaScript, namespace is where (inside which object or in what scope) a variable or a property sits</small></p>
+						<p><small>In professional JS development, we keep the number of global variables to minimum (1). We will see how to achieve this.</small></p>
+
+<pre><code data-trim>
+// instead, organize your app's code like so:
+var myApp = {}; // make a new object.
+myApp.calculate = {};
+myApp.calculate.add = function(num1, num2) {
+	return num1 + num2;		
+};
+
+
+</code></pre>
+				<small>
+					<a target="blank" href="http://javascriptissexy.com/javascript-variable-scope-and-hoisting-explained/">Read more about scope</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>Scope .... namespace contd.</h2>
+					<p>Do Not Pollute the global Scope (namespace)</p>
+					<p>Good code is readable. It's maintainable. It's organized well.</p>
+					
+
+<pre><code data-trim>
+// or like so:
+var myApp = {
+  calculate : {
+    add : function(){},
+    subtract : function(){}
+  }
+	
+};
+
+</code></pre>
+				<small>
+					<a target="blank" href="http://javascriptissexy.com/javascript-variable-scope-and-hoisting-explained/">Read more about scope</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>Back to Functions</h2>
+					<p>Closures</p>
+					<small>Clo ... wha?</small>
+					
+
+<pre><code data-trim>
+/* A closure is an inner function that has access to the outer (enclosing) function’s 
+ variables—scope chain. The closure has three scope chains: it has access to its own scope 
+ (variables defined between its curly brackets), it has access to the outer function’s variables, 
+ and it has access to the global variables. */
+
+function changeName() {
+  var newName = 'mani';
+  function changeHair() {
+    var newHairCut = 'crew cut';
+    console.log('changed name to : ', newName, ' and canged hair style to ', newHairCut);
+  }	
+};
+
+
+</code></pre>
+				<small>
+					<a target="blank" href="http://javascriptissexy.com/understand-javascript-closures-with-ease/">Read more Closures</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>Back to Functions</h2>
+					<p>Functions are also Objects.</p>
+					<p>WTF?</p>
+					
+
+<pre><code data-trim>
+// Objects are key / value pairs. right? Well. What if we could add a key
+// and assign a value to it? Would that certify that Functions are also Object?
+function feedCat(){
+  // do cast stuff.	
+};
+feedCat.times = 5;
+console.log(feedCat.times);
+// prints 5.
+
+feedCat instanceof Object;
+// prints true
+// Holy shit.
+
+
+</code></pre>
+				<small>
+					<a target="blank" href="http://helephant.com/2008/08/19/functions-are-first-class-objects-in-javascript/">Read more Functions as objects</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>But that's a good thing!</h2>
+					<p>Because functions are also objects, we can pass 'em around like objects! </p>
+					<p>We have all probably done this:</p>
+					
+
+<pre><code data-trim>
+$('button').on('click', function() {
+  alert('click click mothafucka!');	
+};
+// or put in vanilla js:
+document.querySelector('button').addEventListener('click', function() {
+  alert('click click mothafucka!');	
+});
+// As you can see, in the first case, we are passing an un-named (anonymous)
+// Function as te second parameter to the function on();
+// And we are doing the same thing in the second example
+// with function attachEvent.
+
+
+</code></pre>
+				<small>
+					<a target="blank" href="http://helephant.com/2008/08/19/functions-are-first-class-objects-in-javascript/">Read more about Functions as objects</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>Callback!</h2>
+					<p>JS be like: Yo! When you're done with your shit, do this one thing last.</p>
+
+
+<pre><code data-trim>
+// jQuery example we have probabbly used.
+$('img').hover(function() {
+  conquerWorld();
+});
+
+/* A callback function, also known as a higher-order function, is a function 
+ that is passed to another function (let’s call this other function “otherFunction”) 
+ as a parameter, and the callback function is called (executed) inside otherFunction. */
+
+
+</code></pre>
+				<small>
+					<a target="blank" href="https://developer.mozilla.org/en-US/docs/Mozilla/js-ctypes/js-ctypes_reference/Callbacks">Read more about callbacks</a>
+				</small>
+				<br>
+				<small>
+					<a target="blank" href="http://javascriptissexy.com/understand-javascript-callback-functions-and-use-them/">Another read about callbacks</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>Callback! contd.</h2>
+					<p>Let's write a callback.</p>
+
+
+<pre><code data-trim>
+// So we know that callbacks are functions passed as arguments.
+// Just remember to pass the function definition. Not the invocation:
+
+function callback() {
+  alert('CALL ALL THE BACKS!');	
+};
+
+document.querySelector('body').addEventListener('click', callback);
+
+// note: document.querySelector('body').addEventListener('click', callback());
+// The parens following the callback make a huge difference.
+// We could have just used an anonymous function right then and there too:
+
+document.querySelector('body').addEventListener('click', function(){
+  alert('CALL ALL THE BACKS!');	
+});
+
+</code></pre>
+				<small>
+					<a target="blank" href="https://developer.mozilla.org/en-US/docs/Mozilla/js-ctypes/js-ctypes_reference/Callbacks">Read more about callbacks</a>
+				</small>
+				<br>
+				<small>
+					<a target="blank" href="http://javascriptissexy.com/understand-javascript-callback-functions-and-use-them/">Another read about callbacks</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>Timing functions</h2>
+
+
+<pre><code data-trim>
+// setTimeout
+// JS be like: wait N ms before doint that thing.
+
+window.setTimeout(function() {
+  alert('yo');
+}, 2000);
+
+// Look familar? That's right. Callback baby!
+
+// JS be like: wait N ms between repetitions.
+window.setInterval(function() {
+  alert('yo');
+}, 2000);
+
+</code></pre>
+				
+				</section>
+
+				<section>
+					<h2>That's all folks!</h2>
+					<p>Assignment: </p>
+
+
+<pre><code data-trim>
+// Build a simple calculator. No interface needed. Should work in console.
+// Should: 
+// - be namespaced
+// - have properties such as: name , version, etc.
+// - have functions as properties: add, multiply, etc. the more the fancier.
+// - should store the results in an array, which should also be nested in the same namespace.
+
+
+// Hint: we need a little help from our friend "this". Don't worry too much about it
+// If it is unfamiliar. We will cover the hell out of it pretty soon. For now, take my word for it.
+
+var myApp = {
+  arr : [],
+  shove : function(thing) {
+    this.arr.push(thing)
+  }	
+};
+
+// Super special points if you make an interface for it. Totally not a requirement tho.
+
+</code></pre>
+				
+				</section>
+
 
 			</div>
 
