@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>web3.js - Session 1</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="../revealjs/css/reveal.min.css">
+		<link rel="stylesheet" href="../revealjs/css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="../revealjs/lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="../revealjs/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>web3.js</h1>
+					<h3>awesome.let('begin');</h3>
+					<p>
+						<small>Created by <a href="http://maniartstudio.com">Mani Nilchiani</a> / <a target="_blank" href="http://twitter.com/mani_art">@mani_art</a></small>
+					</p>
+				</section>
+				
+				<section>
+					<h2>A long time ago in a galaxy far, far away....</h2>
+					<p>
+						Called Netscape Communications, JavaScript was born. The year was 1995 and Cold war had given its place to Browser Wars.
+						But that language has come a very, very long way. We'll learn about this together.
+					</p>
+				</section>
+				
+				<section>
+					<h2>JavaScript is a</h2>
+					<ul>
+						<li>Loosely-typed</li>
+						<li>Object oriented (Prototypal)</li>
+						<li>Functional</li>
+						<li>Scripting language</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h2>Loosely-typed</h2>
+					<p>
+						JS takes care of data types internally. Nothing but "var"s. And that's huge! Look:
+					</p>
+					
+<pre><code data-trim>
+// JavaScript
+var name = "dude";
+var age = 25;
+var height = 6.2;
+var work = function() {
+  for(var i = 0; i &lt; week.lengh; i++) {
+    goTo('office');
+  }	
+}; 
+var hobbies = ["music", "beer", "gif"];
+var keyValue = {
+  "i cant " : "really",
+  "think of" : "anything",
+  "you get" : "the picture"	
+};
+</code></pre>					
+					
+				</section>
+				
+				<section>
+					<h2>Loosely-typed contd.</h2>
+					<p>
+						Where as, in a strong typed language: 
+					</p>
+					
+<pre><code data-trim>
+// Java
+String name = "dude";
+int age = 25;
+float height = 6.2;
+private void work = function() {
+  for(int i : week) {
+    goTo('office');
+  }	
+}; 
+String[] hobbies = {"music", "beer", "gif"}; 
+// This array can ONLY be used for String datatype.
+Map&lt;String, String&gt; keyValue = new HashMap&lt;String, String&gt;();
+keyValue.put("i cant","really");
+keyValue.put("think of","anything");
+keyValue.put("you get","the picture");
+
+</code></pre>					
+					
+				</section>
+				
+				<section>
+					<h2>Object Oriented</h2>
+					<p>
+						Create blueprints, make instances. 
+					</p>
+					
+<pre><code data-trim>
+// A constructor (Think of it as the blueprint.)
+var Car = function() {
+  this.wheelCount = 4;
+  this.doorCount = 4;
+};
+
+// An instance (Use the blueprint to make something.)
+var myCar = new Car();
+</code></pre>					
+					
+				</section>
+				
+				<section>
+					<h2>Functional</h2>
+					<p>
+						Do this. Do that. Get me that value. Jazz hands. 
+					</p>
+					
+<pre><code data-trim>
+function makeCoffee() {
+  getFilter(2);
+  grindCoffee('fine'); 
+  addCoffee(3);
+  addWater(4);
+  brew();
+};
+function getFilter(filterSize) {
+//how to get a filter
+}
+function grindCoffee(grainSize) {
+//how to grind coffee
+}
+function addCoffee(spoons) {
+//how to add coffee
+}
+function addWater(amount) {
+//how to add water.
+}
+function brew() {
+//press that button!
+}
+</code></pre>					
+					
+				</section>
+				
+				<section>
+					<h2>Scripting Language</h2>
+					<h4>
+						Right 'n roll. 
+					</h4>
+					<p>
+						In C++ you would go through Pre-processing, Compiling and Linking to run the program, in JavaScript you save the file and you're done. 
+						<br>No fuss, no muss.
+					</p>
+								
+					
+				</section>
+
+				<section>
+					<h2>things[0] = first;</h2>
+					<h4>
+						Most basic of all setups...
+					</h4>
+					<p>
+						necessary to get you going with coding in JavaScript.
+					</p>
+
+<pre><code data-trim>
+&lt;!-- index.html --&gt;
+&lt;doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+  	&lt;script src="main.js"&gt;&lt;/script&gt;  
+  &lt;/head&gt;
+  &lt;body&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+
+/* main.js */
+// here we go.
+
+
+</code></pre>		
+					
+				</section>
+
+				<section>
+					<h2>Naming things</h2>
+					<h4>
+						Anything but these reserved word:
+					</h4>
+
+<pre><code data-trim>
+abstract
+boolean break byte
+case catch char class const continue
+debugger default delete do double 
+else enum export extends
+false final finally float for function
+goto
+if implements import in instanceof int interface
+long
+native new null
+package private protected public
+return
+short static super switch synchronized
+this throw throws transient true try typeof
+var volatile void
+while with
+
+
+</code></pre>		
+					
+				</section>
+
+				<section>
+					<h2>style : write to be read</h2>
+					<h4>
+						Maintain readabiliy and avert suicide attempts.
+					</h4>
+<pre><code data-trim>
+// Use sensible memorable descriptive names. instead of:
+var temp = 5;
+// write:
+var membeCount = 5;
+
+// for all variables - except for some which we will cover later - use camelCasing. 
+var elementWidth = 275;
+var calculateWidth = function() { };
+var elementWidthPx = '275px';
+</code></pre>
+					<small>*We will have a series of these code style tips as we cover different topics.</small>
+
+		
+					
+				</section>
+
+				<section>
+					<h2>pattern : Single var declaration</h2>
+					<h4>
+						Stefanov calls this a pattern*. We'll see good patterns soon.  
+					</h4>
+<pre><code data-trim>
+// instead of:
+var distance = 20;
+var speed = 4.5;
+var vehicleType = 'bus';
+
+// you can do:
+var distance = 20,
+    speed = 4.5,
+    vehicleType = 'bus';
+
+</code></pre>
+			
+			<small>*patterns are tested solutions to common problems.</small>
+			</section>
+			
+			<section>
+					<h2>style : Don't you drop that var!</h2>
+
+<pre><code data-trim>
+
+// Never drop the "var" when declaring variables. 
+currentValue = 5
+
+// is totally not the same as
+var currentValue = 5;
+</code></pre>
+
+				</section>
+
+				<section>
+					<h2>Data types</h2>
+					<p>
+						<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Values,_variables,_and_literals" target="_blank">
+						JS keeps the list of data types short.
+						</a>
+					</p>
+					<p>String</p>
+<pre><code data-trim>
+
+// String
+var name = 'Luke Skywalker';
+// side note: Strings have a '.length' property:
+var numChars = name.length // 14
+</code></pre>
+				<small>
+					<a target="blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">Read more about String</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>Data types</h2>
+					<p>Number</p>
+<pre><code data-trim>
+
+// Number
+var height = 6.5;
+// JS doesn't have floats and ints. if you want to clip decimals:
+var intHeight = Math.round(height);
+
+</code></pre>
+				<small>
+					<a target="blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Read more about Number</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>Data types</h2>
+					<p>Boolean</p>
+<pre><code data-trim>
+
+// Boolean
+var isRad = true;
+// there are also 'truthy' and 'falsy' values in JavaScript
+// falsy: false, 0, "", null, undefined, NaN
+</code></pre>
+				<small>
+					<a target="blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Read more about Boolean</a>
+				</small>
+				<small>
+					<a target="blank" href="http://www.sitepoint.com/javascript-truthy-falsy/">Read more about truthy and falsy values</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>Data types</h2>
+					<p>null</p>
+<pre><code data-trim>
+// null 
+var name = null;
+// null is a primitive data type. JS be like: no idea.
+</code></pre>
+				<small>
+					<a target="blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">Read more about null</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>Data types</h2>
+					<p>undefined</p>
+<pre><code data-trim>
+// undefined
+var songCount;
+// console.log(track); returns undefined. if a var is not defined, or
+// but not initialized, it has an undefined value.
+
+</code></pre>
+				<small>
+					<a target="blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined">Read more about undefined</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>Objects</h2>
+					<p>Although not primitive data type, but a fundamental element. Unlike C++ or Java, objects in javascript are key value pairs. We'll learn a ton about objects soon.</p>
+<pre><code data-trim>
+// Object
+var mySong = {
+  name : 'Get lucky',
+  artist : 'Daft Punk',
+  stars : 5,
+  grammy : true,
+  play : function() {
+    // do some stuff
+  }
+};
+// It is said that pretty much everything in JS is an object. We'll see how shortly.
+
+</code></pre>
+				<small>
+					<a target="blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Read more about Objects</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>style : never miss that semicolon after statements*</h2>
+					<p>When declaring variables, always remember to put in the semicolon. JS is forgiving and tried to figure out what you mean using 
+						<a href="" target="_blank">Automatic semicolon insertion</a>
+						But this can go wrong. Use 'em.
+					</p>
+<pre><code data-trim>
+var myVar = value;
+function doThis() {
+	
+};
+var myList = ['oranges', 'bananas', 'nutella'];
+</code></pre>
+				<small>
+					<a target="blank" href="http://stackoverflow.com/questions/2846283/what-are-the-rules-for-javascripts-automatic-semicolon-insertion-asi">See where semicolon is a must.</a>
+				</small>
+				</section>
+				
+				<section>
+					<h2>Functions</h2>
+					<p>Make shit happen! We'll get more in depth with functions. But here are the basics:</p>
+<pre><code data-trim>
+// define functions in either of these two ways:
+var makeItHappen = function() {
+  // do magic	
+};
+// above is what we call an "anonymous functions". Part of what JS is famous for.
+// you've seen this bit:
+// the argument we pass to "click" is an "anonymous function". Much more on this soon.
+$('button').click(function() {
+  alert('Yo!');	
+});
+
+function makeItHappen() {
+  // do magic	
+};
+// above is a named function.
+</code></pre>
+				<small>
+					<a target="blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Read more about Functions</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>Functions contd.</h2>
+					<p>Either change a state or return something. Sometimes both:</p>
+<pre><code data-trim>
+// Changes state
+var openConnection = function() {
+  createServer();
+  startServer();
+  listenToPort(80);	
+};
+
+// Returns something
+var add = function(a,b) {
+  return a + b;	
+};
+</code></pre>
+				<small>
+					<a target="blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Read more about Functions</a>
+				</small>
+				</section>
+
+				
+				<section>
+					<h2>Arrays</h2>
+					<p>Collection of things.</p>
+<pre><code data-trim>
+// super basic array
+var checkList = ['do laundry', 'write code', 'make wireframes', 'drink beer'];
+
+// length of array
+var len = checkList.length;
+
+// add something to the end of array
+checkList.push('cook dinner');
+
+// we'll see a ton more about arrays soon
+
+
+
+</code></pre>
+				<small>
+					<a target="blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Read more about Arrays</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>typeof</h2>
+					<p>operator to figure out the type of a variable</p>
+<pre><code data-trim>
+function calculate() {
+ // do calculation	
+}
+typeof calculate;
+// prints function
+
+</code></pre>
+				<small>
+					<a target="blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof">Read more about typeof</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>Statements</h2>
+					<p>if else</p>
+<pre><code data-trim>
+
+//see if conditions meet.
+if(inventory.length > 0 &amp;&amp; user.hasCredit()) {
+  console.log('conditions met');
+  sale.setStatus('in-progress');
+} else {
+  console.log('Sale could not go through');
+  message.display('Sorry we are we are out of stock, or your credit is low.');
+  retrun;
+}
+
+</code></pre>
+				<small>
+					<a target="blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else">Read more about if else</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>Statements</h2>
+					<p>switch case</p>
+<pre><code data-trim>
+//checking different cases of one condition
+
+switch(difficulty) {
+  case 'easy':
+    game.start('easy');
+    break;
+  case 'medium':
+    game.start('medium');
+    break;
+  case 'pro':
+    game.start('pro');
+    break;
+  default:
+    game.start('easy');  
+}
+
+</code></pre>
+				<small>
+					<a target="blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch">Read more about switch case</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>Statements</h2>
+					<p>for, for in</p>
+<pre><code data-trim>
+//on arrays:
+var courses = [thesis, web3, pcomp];
+
+for( var i = 0; i&lt;course.length; i++ ){
+  courses[i].register();	
+}
+
+//on objects
+var thesis = {
+  credits : 6,
+  type : 'core',
+  register : function() {
+    login();
+    enterData();
+    submit();  
+  } 	
+};
+
+for( var prop in thesis ) {
+  console.log(prop, ' : ', thesis[prop]);
+}
+</code></pre>
+				<small>
+					<a target="blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for">Read more about for</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>Statements</h2>
+					<p>while</p>
+<pre><code data-trim>
+var courses = [thesis, web3, pcomp],
+  i = courses.length;
+
+while(i &gt; 0){
+  courses[i].register();	
+  i --;
+}
+/* or, alternatively */
+var i = courses.length;
+while(i --){
+  courses[i].register();	
+}
+</code></pre>
+				<small>
+					<a target="blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/while">Read more about while</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>Statements</h2>
+					<p>do while</p>
+<pre><code data-trim>
+// like while. But runs at least once
+var courses = [thesis, web3, pcomp],
+  i = courses.length;
+
+do {
+  courses[i].register();	
+  i --;	
+} while(i &gt; 0);
+</code></pre>
+				<small>
+					<a target="blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/while">Read more about while</a>
+				</small>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="../revealjs/lib/js/head.min.js"></script>
+		<script src="../revealjs/js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				slideNumber: true,
+				theme: Reveal.getQueryHash().theme || 'night', // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: '../revealjs/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../revealjs/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../revealjs/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../revealjs/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../revealjs/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: '../revealjs/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
