@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>web3.js - Session 2</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="../revealjs/css/reveal.min.css">
+		<link rel="stylesheet" href="../revealjs/css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="../revealjs/lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="../revealjs/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>web3.js</h1>
+					<h3>awesome.let('begin');</h3>
+					<h4>Session 2</h4>
+					<p>
+						<small>Created by <a href="http://maniartstudio.com">Mani Nilchiani</a> / <a target="_blank" href="http://twitter.com/mani_art">@mani_art</a></small>
+					</p>
+				</section>
+				<section>
+					<h2>things[0] = 'first';</h2>
+					<p>
+						Get a good code editor. 
+						<a href="http://www.sublimetext.com/">Here's one</a>
+					</p>
+				</section>
+
+				<section>
+					<h2>Public, Private and the rest of the story</h2>
+					<p>
+						When writing programs, we want to divide our code sensible modules. We call these "classes".
+						This is how a class looks like in C++
+					</p>
+<pre><code data-trim>
+// A class in C++
+class person {
+
+public:
+  // public variables and methods, accessible from outside
+
+private :
+  // private variables and methods, accessible only from inside the class 
+
+};
+
+</code></pre>	
+				</section>
+
+				<section>
+					<h2>Well guess what?</h2>
+					<p>
+						That's right. In JS we don't have that.
+					</p>
+				</section>
+
+				<section>
+					<h2>But why do we care?</h2>
+					<p>
+						We care, because when our code grows in complexity and size, if we are all over the place, there is no way we can maintain and read our code. Let alone improve it and add to it.	
+					</p>
+				</section>
+
+				<section>
+					<h2>So we will talk about classes, public and private members.</h2>
+					<p>
+						But first, we have to get a few things out of the way.
+					</p>
+				</section>
+
+				<section>
+					<h2>So we will talk about classes, public and private members.</h2>
+					<p>
+						But first, we have to get a few things out of the way.
+					</p>
+				</section>
+
+				<section>
+					<h2>What is the difference between myVar 1 and myVar2?</h2>
+					
+<pre><code data-trim>
+var calculate = function(num1, num2){
+  return num1 + num2;
+},
+  myVar1 = calculate,
+  myVar2 = calculate();
+
+</code></pre>
+				</section>
+
+				<section>
+					<h2>You got it! myVar is equal to what calculate RETURNS.</h2>
+					<p>
+						This can turn functions in JavaScript to potential Object Making factories! How cool is that?
+					</p>
+					
+<pre><code data-trim>
+var createObject = function(var1, var2, var3, var4) {
+  return {
+    foo : var1,
+    bar : var2,
+    baz : var3,
+    boing : var4
+ }	
+}
+var myObj = createObject('beer', 'coffee', 'juice', 'water');
+</code></pre>
+				</section>
+
+				<section>
+					<h2>But that's not super useful because.</h2>
+					<p>
+						Hang in there. Soon, it will be. Hold that thought while we talk about another cool thing.
+					</p>
+					
+				</section>
+
+				
+				<section>
+					<h2>Immediately Executed Function Expressions</h2>
+					<p>
+						Her friends call her IIFE. She defines AND executes functions right then and there.
+
+					</p>
+<pre><code data-trim>
+var myObj = (function(var1, var2, var3, var4) {
+  return {
+    foo : var1,
+    bar : var2,
+    baz : var3,
+    boing : var4
+ }	
+})('beer', 'coffee', 'juice','water');
+console.log(myObj);
+</code></pre>
+				<small>
+					<a target="blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Read more about IIFE</a>
+				</small>
+
+				</section>
+
+				<section>
+					<h2>Why do I care?</h2>
+					<p>
+						Well! If you wanna be an Object Oriented programmer, that's the way to go in JS.
+						IIFE's are convenienct ways for us to create privacy in JS.
+						Remember we talked about how Functions are the only thing in JS that create scope?
+						The scope created by IIFE's can create Scope private and public members for us.
+					</p>
+
+				</section>
+
+				<section>
+					<h2>Let's make things private.</h2>
+					<p>
+						Try something like this: 
+
+					</p>
+<pre><code data-trim>
+var myObj = (function() {
+  
+  var myName = 'Mani',
+    lastName = 'Nilchiani',
+    age = '27';
+
+})();
+console.log(myObj);
+</code></pre>
+				
+				<small>
+					<a target="_blank" href="http://javascript.crockford.com/private.html">Read more about Public and Private</a>
+				</small>
+				</section>
+
+				<section>
+					<h2>Dissapointed? well. you shouldn't be!</h2>
+					<p>
+						We just created an object with private members! That's a good thing :)
+						<br>
+						Now let's make public things too.
+					</p>
+<pre><code data-trim>
+var myObj = (function() {
+  
+  var firstName = 'Mani',
+    lastName = 'Nilchiani',
+    age = '27';
+
+  return {
+    first : myName,
+    last : lastName
+  }
+
+})();
+console.log(myObj);
+</code></pre>
+				<small>
+					<a target="_blank" href="http://javascript.crockford.com/private.html">Read more about Public and Private</a>
+				</small>
+
+				</section>
+
+				<section>
+					<h2>Privileged</h2>
+					<p>
+						Privileged members bridge private and public. Using them, we can control what goes out and what stays in.
+						<br> Have you ever heard of "getters" and "setters" ? 
+						<br> Those are privileged methods too. Watch:
+					</p>
+<pre><code data-trim>
+var myObj = (function() {
+  
+  var firstName = 'Mani',
+    lastName = 'Nilchiani',
+    age = '27',
+    getFirstName = function(){
+      return firstName;
+    }
+
+  return {
+    getFirstName : getFirstName
+  }
+
+})();
+console.log(myObj);
+</code></pre>
+				<small>
+					<a target="blank" href="http://ejohn.org/blog/javascript-getters-and-setters/">Read more Getters and Setters in JS</a>
+				</small>
+
+				</section>
+				
+				<section>
+					<h2>Privileged contd.</h2>
+					<p>
+						Now let's go ahead and create some setters too:
+						<small>With a little help from our friend Closure.</small>
+					</p>
+<pre><code data-trim>
+var myObj = (function() {
+  
+  var firstName = 'Mani',
+    lastName = 'Nilchiani',
+    age = '27',
+    getFirstName = function(){
+      return firstName;
+    },
+    setFirstName = function(newName) {
+      firstName = newName;  
+    };
+
+  return {
+    getFirstName : getFirstName,
+    setFirstName : setFirstName
+  }
+
+})();
+console.log(myObj);
+</code></pre>
+				<small>
+					<a target="blank" href="http://ejohn.org/blog/javascript-getters-and-setters/">Read more Getters and Setters in JS</a>
+				</small>
+
+				</section>
+
+				<section>
+					<h2>We just created an API!</h2>
+					<p>
+						Holy shit!
+					</p>
+<pre><code data-trim>
+var myObj = (function() {
+  
+  var secret = 'secret',
+    secretOperation = function() {
+    //there is no way I'm gonna let you see
+  },
+    getSecret = function() {
+     return secret;
+  },
+  setSecret = function(newSecret) {
+  	secret = newSecret;   
+  };
+  return {
+    getSecret : getSecret,
+    setSecret : setSecret
+  }
+
+})();
+console.log(myObj);
+</code></pre>
+				<small>
+					<a target="blank" href="http://ejohn.org/blog/javascript-getters-and-setters/">Read more Getters and Setters in JS</a>
+				</small>
+
+				</section>
+
+				<section>
+					<h2>To be contiued.</h2>
+					
+
+				</section>
+
+
+			</div>
+
+		</div>
+
+		<script src="../revealjs/lib/js/head.min.js"></script>
+		<script src="../revealjs/js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				slideNumber: true,
+				theme: Reveal.getQueryHash().theme || 'night', // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: '../revealjs/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../revealjs/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../revealjs/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../revealjs/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../revealjs/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: '../revealjs/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
