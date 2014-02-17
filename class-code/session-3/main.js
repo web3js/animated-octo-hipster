@@ -15,7 +15,6 @@ var app = (function(w, d) {
 			e.preventDefault();
 			notes.push(new Note(sanitize(DOM['write-note'].value), DOM['notes']).init());
 			DOM['write-note'].value = '';
-
 		});
 	};
 
@@ -28,20 +27,38 @@ var app = (function(w, d) {
 		this.likeButton = d.createElement('li');
 		this.removeButton = d.createElement('li');
 		this.liked = false;
+		
+		var that = this; // We will use this var in like(); and remove(); method. 
 		this.like = function() {
-			
-			
+			/* 	NOTE: in the context of this function
+				whenever you need to call a method or property
+				from Note(); scope, instead of calling: "this.liked", use "that.liked"
+				Will explain this in class Thursday
+			 */
+
+			// implement the method logic.
+			// This method should:
+			// 1 - Toggle the class ".liked" to the like button.
+			// 2 - Toggle the "liked" boolean.
 		};
 		this.remove = function() {
-			
-			
+			/* 	NOTE: in the context of this function
+				whenever you need to call a method or property
+				from Note(); scope, instead of calling: "this.liked", use "that.liked"
+				Will explain this in class Thursday
+			 */
+
+			// implement the method logic.
+			// This method should:
+			// 1 - Delete the note from the screen
+			// 2 - Delete the note from the "notes" array
 		};
 		this.attachEvents = function() {
 			this.likeButton.addEventListener('click', function() {
-				// implement LIKE functionality	
+				// Call the like method here.
 			});
 			this.removeButton.addEventListener('click', function() {
-				// implement remove functionality	
+				// Call the remove method here.
 			});
 		};
 		this.init = function() {
