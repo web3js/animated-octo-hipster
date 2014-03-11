@@ -6,9 +6,10 @@ app.router = (function() {
 	    var hash = window.location.hash.slice(2);
 	    console.log(hash); 
 	    if(typeof handle[hash] === 'function') {
-	      requestHandlers[hash]();
+	      	requestHandlers[hash]();
 	    } else {
-	      console.log('404 not found');// 404
+			console.log('Could not find what you were looking for. Redirecting to Archive.');
+			handle['/']();
 	    }
   	};
   	console.log(app);

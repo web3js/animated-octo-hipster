@@ -18,7 +18,7 @@ app.main  = (function() {
       event.preventDefault();
         var fieldValue = elements.noteField.value;
 
-        var newNote = new Model(fieldValue, notes).save();
+        var newNote = new Model({noteBodyText : fieldValue, liked: false}, notes).save();
         new View(newNote, elements.noteList).init();
         
         elements.noteField.value = '';
@@ -47,7 +47,6 @@ app.main  = (function() {
   };
 
   var View = function(note, containerEl) {
-    
     var index = notes.indexOf(note),
         that = this;
 
@@ -63,12 +62,15 @@ app.main  = (function() {
       this.removeButton.classList.add('remove' ,'icon-cancel');
       this.likeButton.classList.add('like' ,'icon-heart');
 
-      this.paragraph.innerHTML = note.noteBodyText;
+      this.paragraph.innerHTML = note.data.noteBodyText;
       this.actions.appendChild(this.removeButton);
       this.actions.appendChild(this.likeButton);
       this.listItem.appendChild(this.paragraph);
       this.listItem.appendChild(this.actions);
 
+      if (note.data.liked) {
+        this.likeButton.classList.add('liked');
+      }
       addAsFirstChild(elements.noteList, this.listItem);
 
       elements.noNotesFound.classList.add('hidden');
@@ -78,7 +80,7 @@ app.main  = (function() {
 
     this.like = function() {
       note.like(); // update the "liked" in our Model (data)
-      console.log('View says: am I liked?', note.liked);
+      console.log('View says: am I liked?', note.data.liked);
       that.likeButton.classList.toggle('liked'); // update the UI and show a red heart
     };
 
@@ -104,20 +106,25 @@ app.main  = (function() {
   };
 
 
-  var Model = function(noteBodyText, collection) {
-    this.noteBodyText = noteBodyText;
-    this.liked = false;
+  var Model = function(noteData, collection) {
+    
+    this.data = {
+      noteBodyText : noteData.noteBodyText,
+      liked : noteData.liked  
+    };
     
     this.save = function() {
-      collection.push(this);
+      collection.push(this.data);
       localStorage.setItem('notes', JSON.stringify(collection));
       return this;
     };
     
     this.like = function() {
-      this.liked = !this.liked;
-      localStorage.setItem('notes', JSON.stringify(notes));
-      console.log('Model says: Am I liked?' , this.liked);
+      this.data.liked = !this.data.liked;
+      collection.splice(collection.indexOf(this.data), 1, this.data);
+      localStorage.setItem('notes', JSON.stringify(collection));
+      console.log('Model says: Am I liked?' , this.data.liked);
+      return this;
     };
 
     this.remove = function() {
@@ -134,13 +141,14 @@ app.main  = (function() {
     if(('notes' in localStorage) && (JSON.parse(localStorage.getItem('notes')).length > 0)) {
 
       var savedNotes = JSON.parse(localStorage.getItem('notes')),
-    
-      notes = savedNotes.slice();
-
+      notes = savedNotes.slice(),
       i = 0,
-      len = savedNotes.length;
+      len = savedNotes.length,
+      loadedNote;
+
       for(i; i < len; i += 1) {
-        new View(savedNotes[i], elements.noteList).init();
+        loadedNote = new Model(savedNotes[i], notes);
+        new View(loadedNote, elements.noteList).init();
       }
     
     } else {
@@ -148,7 +156,7 @@ app.main  = (function() {
     }
 
   };
-  
+
   
   var init = function() {
     console.log('App init');
