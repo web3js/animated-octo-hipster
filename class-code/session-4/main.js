@@ -5,24 +5,51 @@ var app  = (function() {
     noteSubmit : document.querySelector('.submit-note'),
     noteList : document.querySelector('.notes')
   };
-  
-  var notes = [];
+      
+  window.notes = [];
   
   var attachEvents = function() {
     elements.noteSubmit.addEventListener('click', function(event) {
       event.preventDefault();
         var fieldValue = elements.noteField.value;
-      notes.push(new Note(fieldValue).init());
+        
+        var newNoteModel = new NoteModel(fieldValue);
+        notes.push(newNoteModel);
+        
+        new NoteView(newNoteModel, elements.noteList).init();
+        
         elements.noteField.value = '';
     });
   };
-  var Note = function(noteBodyText) {
+
+  var addAsFirstChild = function(parent, child) {
+    var parentNode = parent,
+      childNode = child;
+
+    if(parentNode.firstChild) {
+      parentNode.insertBefore(child, parent.firstChild);
+    } else {
+      parentNode.appencChild(child);
+    }
+
+  };
+
+  var NoteModel = function(noteBodyText) {
     this.noteBodyText = noteBodyText;
+    this.liked = false;
+  };
+
+  var NoteView = function(model, parentElement) {
+    
+    var index = notes.indexOf(model);
+
     this.listItem = document.createElement('li');
     this.paragraph = document.createElement('p');
     this.listItem.classList.add('note');
-    this.paragraph.innerHTML = this.noteBodyText;
-  this.listItem.appendChild(this.paragraph);
+    
+    this.paragraph.innerHTML = notes[index].noteBodyText;
+    
+    this.listItem.appendChild(this.paragraph);
     this.actions = document.createElement('ul');
     this.actions.classList.add('actions');
     this.removeButton = document.createElement('li');
@@ -31,20 +58,21 @@ var app  = (function() {
     this.likeButton.classList.add('like' ,'icon-heart');
     this.actions.appendChild(this.removeButton);
     this.actions.appendChild(this.likeButton);
-    
     this.listItem.appendChild(this.actions);
     elements.noteList.appendChild(this.listItem);
     var that = this;
     this.liked = false;
     this.like = function() {
-      that.liked = !that.liked;
-      console.log('I am liked', that.liked);
-        that.likeButton.classList.toggle('liked');
+      notes[index].liked = !notes[index].liked;
+      //localStorage.setItem('notes', JSON.stringify(notes));
+      console.log('I am liked', notes[index].liked);
+      that.likeButton.classList.toggle('liked');
     };
     this.remove = function() {
       console.log('I am a goner');
-        notes.splice(notes.indexOf(that),1);
-    elements.noteList.removeChild(that.listItem);
+      notes.splice(index,1);
+      //localStorage.setItem('notes', JSON.stringify(notes));
+      elements.noteList.removeChild(that.listItem);
     };
     this.attachEvents = function() {
       this.likeButton.addEventListener('click', this.like);
@@ -52,22 +80,19 @@ var app  = (function() {
     };
     this.init = function() {
       this.attachEvents();
-        return this;
-    };
+      addAsFirstChild(elements.noteList, this.listItem);
+      return this;
+    }; 
   };
-  
-  
-  
+
   var init = function() {
     console.log('App init');
     attachEvents();
-    // all the functions that make the app run.
   };
   
   return {
     init : init,
     elements : elements,
-    Note : Note,
     notes : notes
   };
 })();
