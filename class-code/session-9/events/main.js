@@ -104,6 +104,7 @@ app.main  = (function(w, d, $) {
       that.listItem.remove();
       //elements.noteList.remove(that.listItem); // update the UI by removing that list item
       note.remove(); // update the data by calling the remove method from Model
+      
       // with jQuery, this is how we check for the number of children in an element
       if(elements.noteList.children().length === 0) {
         elements.noNotesFound.removeClass('hidden');  // Show the "you have no notes yet" message, if all the notes are deleted
