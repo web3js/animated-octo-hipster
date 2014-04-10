@@ -201,6 +201,17 @@ body {
 .hidden {
 	display: none;
 }
+.status {
+	background: rgba(0,200,80, 1);
+	padding: 5px;
+	color: white;
+	font-size: 80%;
+	position: fixed;
+	z-index: 100;
+	top: 5px;
+	left: 5px;
+
+}
 
 
 

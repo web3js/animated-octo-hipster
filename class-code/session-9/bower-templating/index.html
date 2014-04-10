@@ -32,7 +32,39 @@
 		</ul>
 	</div>
 
-	<script type="text/javascript" src="vendor/jquery.min.js"></script>
+	<script type="text/template" class="note-template">
+		<li class="note">
+			<p>
+				<%= note.noteBodyText %>
+			</p>
+			<ul class="actions">
+				<li class="like icon-heart<% if(note.liked) { %> liked<% } %>"</li>
+				<li class="remove icon-cancel"></li>
+			</ul>
+		</li>
+	</script>
+
+	<script type="text/template" class="note-list">
+		
+		<ul class="notes">
+			<%	_.each(notes, function(note) { %>
+			<li class="note">
+				<p>
+				<%= note.noteBodyText %>
+				</p>
+				<ul class="actions">
+					<li class="like icon-heart<% if(note.liked) { %> liked<% } %>"</li>
+					<li class="remove icon-cancel"></li>
+				</ul>
+			</li>
+			<%	}); %>
+			
+		</ul>
+	</script>
+
+
+	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="bower_components/underscore/underscore.js"></script>
 	<script type="text/javascript" src="router.js"></script>
 	<script type="text/javascript" src="events.js"></script>
 	<script type="text/javascript" src="main.js"></script>

@@ -1,14 +1,15 @@
 var app = app || {};
 
-app.main  = (function(w, d, $) {  
+app.main  = (function(w, d, $, _) {  
 
-  // Caching elements: instead of document.querySelector we use 
-  // the simple $('selector') syntax
   var elements = {
     noteField : $('.write-note'),
     noteSubmit : $('.submit-note'),
     noteList : $('.notes'),
-    noNotesFound : $('.no-notes-found')
+    noNotesFound : $('.no-notes-found'),
+    status : $('.status'),
+    noteCount : $('.status').find('.note-count'),
+    likeCount : $('.status').find('.like-count')
   };
 
   var notes = [];
@@ -16,22 +17,19 @@ app.main  = (function(w, d, $) {
 
   var attachEvents = function() {
 
-    // instead of "addEventListener" we use jQuery's "on" method. Same result.
     elements.noteSubmit.on('click', function(event) {
       event.preventDefault();
-      
-      // To get  a field value with jQuery, use the the val() method. 
       var fieldValue = elements.noteField.val();
 
       var newNote = new Model({ noteBodyText : fieldValue, liked: false }, notes).save();
       
       new View(newNote, elements.noteList).init();
       
-      // To reset the field value in jQuery use the val() method and pass in an empty string.
-      // It will replace whatever's in the input.
       elements.noteField.val('');
 
     });
+
+    app.events.subscribe('status:update', updateStatus);
 
     window.addEventListener('hashchange', function(e) {
       e.preventDefault();
@@ -47,8 +45,8 @@ app.main  = (function(w, d, $) {
 
     this.render = function() {
 
-      // instead of document.createElement, we can simply create new elements using the 
-      // jQuery syntax below. $('<li></li>') simply creates an empty <li> element for you.
+
+
       this.listItem = $('<li></li>');
       this.paragraph = $('<p></p>');
       this.actions = $('<ul></ul>');
@@ -56,8 +54,6 @@ app.main  = (function(w, d, $) {
       this.likeButton = $('<li></li>');
 
 
-      // no more classList.add() necessary.
-      // just use jQuery's element.addClass()
       this.listItem.addClass('note');
       this.actions.addClass('actions');
       
@@ -65,9 +61,7 @@ app.main  = (function(w, d, $) {
       
       this.likeButton.addClass('like icon-heart');
 
-      // to change the text inside an element, you no longer have to do:
-      // element.innerHTML = 'blah blah'
-      // You can simplt say : element.text('here goes the text inside the element!');
+
       this.paragraph.text(note.data.noteBodyText);
       
 
@@ -79,13 +73,9 @@ app.main  = (function(w, d, $) {
       if (note.data.liked) {
         this.likeButton.addClass('liked');
       }
-
-      // addAsFirstChild is not necessary anymore.
-      // we can use jQuery's prepend takes care of that for us.
       elements.noteList.prepend(this.listItem);
 
-      // classList.add and classList.remove is not necessary here anymore.
-      // we use jQuery's addClass() and removeClass() methods.
+    
       elements.noNotesFound.addClass('hidden');
 
       return this;     
@@ -94,21 +84,23 @@ app.main  = (function(w, d, $) {
     this.like = function() {
       note.like(); // update the "liked" in our Model (data)
       console.log('View says: am I liked?', note.data.liked);
-      // classList.toggle() is not necessary here anymore.
-      // we use jQuery's toggleClass() method.
-      that.likeButton.toggleClass('liked'); // update the UI and show a red heart
+
+      that.likeButton.toggleClass('liked'); 
+      app.events.publish('status:update', [notes.length, _.where(notes,{liked : true}).length]);
+
     };
 
     this.remove = function() {
+      
       console.log('View says: I am a goner');
       that.listItem.remove();
-      //elements.noteList.remove(that.listItem); // update the UI by removing that list item
       note.remove(); // update the data by calling the remove method from Model
       
-      // with jQuery, this is how we check for the number of children in an element
       if(elements.noteList.children().length === 0) {
         elements.noNotesFound.removeClass('hidden');  // Show the "you have no notes yet" message, if all the notes are deleted
       }
+
+      app.events.publish('status:update', [notes.length, _.where(notes,{liked : true}).length]);
     };
     this.attachEvents = function() {
       this.likeButton.on('click', this.like);
@@ -116,6 +108,7 @@ app.main  = (function(w, d, $) {
     };
     
     this.init = function() {
+      app.events.publish('status:update', [notes.length, _.where(notes,{liked : true}).length]);
       this.render();
       this.attachEvents();
       return this;
@@ -123,19 +116,14 @@ app.main  = (function(w, d, $) {
 
   };
 
-  // Here, we changed te Model function to accept an Object instead of just noteBodyText
-  // The object contains: {noteBodytext : 'Some text here', liked : false }
+
   var Model = function(noteData, collection) {
-    
-    // So noteData is an object we passed to Model (look at the beginning of this file to see that when we create a new note we pass an object to Model function)
-    // We read from the arguments (noteData) and create a "data" object.
+   
     this.data = noteData;
     
     this.save = function() {
-      // push the "data" of this model to the "collection". Collection here is "notes" array. 
-      // Because when we call "new Model", we pass "notes" as the second argument.
+     
       collection.push(this.data);
-      // After updating the "notes" array we write it to localstorage
       localStorage.setItem('notes', JSON.stringify(collection));
       return this;
     };
@@ -179,8 +167,8 @@ app.main  = (function(w, d, $) {
     if(('notes' in localStorage) && (JSON.parse(localStorage.getItem('notes')).length > 0)) {
     
       console.log('We have localStorage. Notes from it are: ', notes);
-      
       notes = JSON.parse(localStorage.getItem('notes')).slice();
+
 
       var i = 0,
       len = notes.length, 
@@ -193,8 +181,16 @@ app.main  = (function(w, d, $) {
     
     } else {
       elements.noNotesFound.removeClass('hidden');
+      app.events.publish('status:update', [0,0]);
     }
+    
 
+  };
+
+  var updateStatus = function(counts) {
+      console.log('updating notes count with args', counts);
+      elements.noteCount.text(counts[0]);
+      elements.likeCount.text(counts[1]);
   };
 
   
@@ -208,9 +204,10 @@ app.main  = (function(w, d, $) {
   
   return {
     init : init,
-    notes : notes
+    notes : notes,
+    elements : elements
   };
 
-})(window, document, jQuery);
+})(window, document, jQuery, _);
 
 window.addEventListener('DOMContentLoaded', app.main.init);
