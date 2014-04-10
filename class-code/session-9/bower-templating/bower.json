@@ -1,0 +1,11 @@
+{
+  "name": "Grunt-Bower-Boilerplate",
+  "description": "Grunt Bower Boilerplate",
+  "version": "1.0.1",
+  "author": "FiNGAHOLiC",
+  "dependencies": {},
+  "devDependencies": {
+    "jquery": "~2.1.0",
+    "underscore": "~1.6.0"
+  }
+}
