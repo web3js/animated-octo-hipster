@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+// app is what we will call a "module".
+=======
  // app is what we will call a "module".
+>>>>>>> FETCH_HEAD
 // it is a Global variable. And an Object.
 // app is equal to an Immediately Invoked Function Expression.
 // That is why the function is wrapped in parentheses like this:
@@ -162,7 +166,11 @@ var app = (function(w, d) { // scroll down and see how we are passind "window" a
 			this.listItem.appendChild(this.actions); // append the ".actions" <ul> element to the note.
 			this.list.appendChild(this.listItem); // append the note to the notes list.
 			this.attachEvents(); // run the function that looks out for all the events for THIS NOTE
+<<<<<<< HEAD
+			return this; // in the end, return the note object to us. 
+=======
 			//return this; // in the end, return the note object to us. 
+>>>>>>> FETCH_HEAD
 		}
 
 	};
