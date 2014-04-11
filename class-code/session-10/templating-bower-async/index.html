@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+	<title>kittens</title>
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<script type="text/javascript" src="bower_components/modernizr/modernizr.js"></script>
+</head>
+<body>
+
+	<script type="text/template" class="gif-tpl">
+		<% _.each(gifs, function(gif) { %>
+			<li>
+				<img src="<%= gif.images.fixed_width.url %>" alt="gif">
+			</li>
+		<% }) %>
+	</script>
+
+	<div class="container">
+		<ul class="gifs">
+			<!--  content coming from an underscore template -->
+		</ul>
+	</div>
+
+	<script type="text/javascript" src="bower_components/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="bower_components/underscore/underscore.js"></script>
+	<script type="text/javascript" src="events.js"></script>
+	<script type="text/javascript" src="main.js"></script>
+</body>
+</html>
