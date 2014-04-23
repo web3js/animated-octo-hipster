@@ -17,9 +17,16 @@ app.events = (function(w, d, $) {
 
     };
 
+    var unsubscribe = function(name) {
+
+        $(document).off(name);
+    
+    };
+
     return {
     	publish : publish,
-    	subscribe : subscribe
+    	subscribe : subscribe,
+        unsubscribe : unsubscribe 
     }; 
 
-})(window, document, jQuery)
+})(window, document, jQuery);
