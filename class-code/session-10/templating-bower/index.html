@@ -7,6 +7,23 @@
 </head>
 <body>
 
+	<!-- 
+		This is the underscore template.
+		Look at the class attribute. 'gif-tpl'
+		This is how we grab this element in js, and extract the 
+		template text out of it. (look at main.js)
+		Also, the tag we use for underscore templates is <script>
+		but notice how we define the type as "text/template"
+	
+		<%  %> means, Hey underscore! grab whatever is between these two and figure out what it means.
+		
+		if you just want to interpolate a value e.g: Hello <%= name %> ====> Hello Justin
+		You should use "=" (equal sign) right after the opening <% %>
+		
+		But you can also write javascript and underscore will read and execute it.
+		For example, here we use the _.each method to iterate over all gifs and grab the
+		gifs one by one. read more on _.each: http://underscorejs.org/#each
+	-->
 	<script type="text/template" class="gif-tpl">
 		<% _.each(gifs, function(gif) { %>
 			<li>
