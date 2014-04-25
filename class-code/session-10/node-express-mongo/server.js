@@ -102,27 +102,27 @@ app.get('/', sayHi);
 	Another route we register within our application.
 	run notes.findAll whenever the path matches "/notes"
 */
-app.get('/notes', notes.findAll);
+app.get('/api/notes', notes.findAll);
 /* 
 	Yet another route. 
 	This one helps us find a note with a specific ID
 */
-app.get('/notes/:id', notes.findById);
+app.get('/api/notes/:id', notes.findById);
 /* 
 	This is a route that matches the path '/notes'
 	with a POST request. This creates a new note.
 	See that we are pairing the function "notes.addNote" with the post request? Yeah!
 */
-app.post('/notes', notes.addNote);
+app.post('/api/notes', notes.addNote);
 /* 
 	This is a route that allows us to update an existing note.
 	For updating purposes we use the "PUT" request
 */
-app.put('/notes/:id', notes.updateNote);
+app.put('/api/notes/:id', notes.updateNote);
 /* 
 	And finally, we use the DELETE request to remove a note.
 */
-app.delete('/notes/:id', notes.deleteNote);
+app.delete('/api/notes/:id', notes.deleteNote);
 /* 
 	app.listen(port_number) will run our app on the passed in port number.
 */
