@@ -42,7 +42,7 @@ var addNote = function(req, res) {
 	db.collection('mynotes', function(err, collection) {
 		collection.insert(note, {safe : true}, function(err, result) {
 			if(err) {
-				console.log('an error has occured');
+				console.log('an error has occured: ', err);
 			} else {
 				console.log('note successfully added', result[0]);
 				res.send(result[0]);

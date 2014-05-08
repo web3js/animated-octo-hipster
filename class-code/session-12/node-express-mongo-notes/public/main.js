@@ -106,7 +106,7 @@ app.main  = (function(w, d, $, _) {
         data : { note : stringifiedData },
         success : function(data, textStatus, jqXHR) {
           that._id = data._id;
-          console.log('######################################################## model save data is: ', data);
+          console.log('######################################################## model save data is: ', data, jqXHR, textStatus);
           
           //collection.push(data);
           app.events.publish('ajax:POSTcomplete', data);
