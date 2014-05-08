@@ -1,29 +1,5 @@
 var app = app || {};
 
-<<<<<<< HEAD
-app.main  = (function() {  
-
-  var elements = {
-    noteField : document.querySelector('.write-note'),
-    noteSubmit : document.querySelector('.submit-note'),
-    noteList : document.querySelector('.notes'),
-    noNotesFound : document.querySelector('.no-notes-found')
-  };
-
-
-  var notes = JSON.parse(localStorage.getItem('notes')) || [];
-
-  var attachEvents = function() {
-
-    elements.noteSubmit.addEventListener('click', function(event) {
-      event.preventDefault();
-        var fieldValue = elements.noteField.value;
-
-        var newNote = new Model(fieldValue, notes).save();
-        new View(newNote, elements.noteList).init();
-        
-        elements.noteField.value = '';
-=======
 app.main  = (function(w, d, $) {  
 
   // Caching elements: instead of document.querySelector we use 
